@@ -238,7 +238,7 @@ input:checked+.slider:before {
                                         Admin
                                         <small>l'Office Commercial Pharmaceutique</small>
                                        <a href="{{route('users.create')}}" role="button" class="btn btn-primary btn-sm  " title="profile" ><i>profile</i></a>
-                                       
+
                                        <form method="POST" action="{{ route('logout') }}">
                                         @csrf
 
@@ -247,7 +247,7 @@ input:checked+.slider:before {
                                             {{ __('Déconnexion') }}
                                         </button>
                                     </form>
-                                    </p></li> 
+                                    </p></li>
                             </ul>
                         </li>
                     </ul>
@@ -265,7 +265,7 @@ input:checked+.slider:before {
                     </div>
                     <div class="pull-left info">
                         <p>Téléphones Portables </p>
-                    
+
                     </div>
                 </div>
                 <ul class="sidebar-menu" data-widget="tree">
@@ -293,7 +293,7 @@ input:checked+.slider:before {
                         <ul class="treeview-menu">
                             <li><a href="{{ route('employees.index') }}"><i class="fa fa-clone"></i> Liste Employés</a></li>
 
-    
+
                         </ul>
                     </li>
                     <li class="treeview">
@@ -316,8 +316,8 @@ input:checked+.slider:before {
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{ route('applications.index') }}"><i class="fa fa-clone"></i>Liste Applications</a></li>
-                        
-    
+
+
                         </ul>
                     </li>
                 </ul>
@@ -335,7 +335,7 @@ input:checked+.slider:before {
                 <br> @yield('content')
             </section>
             <!-- /.content -->
-            <div id="snackbar">Data updated successfully.</div>
+            <div id="snackbar">les données est modifier avec succés.</div>
 
         </div>
 
@@ -350,8 +350,8 @@ input:checked+.slider:before {
     </div>
     <!-- ./wrapper -->
 
-               
-   
+
+
     <script>
         $(function() {
             dinamicMenu();

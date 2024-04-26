@@ -90,7 +90,7 @@
             <option value={{$app->nom}}>{{$app->nom}}</option>
             @endforeach
         </select>
-    </td>  
+    </td>
      <td>
         <select id="Application4" name="Application4">
         <option value=''> App 4</option>
@@ -158,9 +158,9 @@
         </div>
 <script>
 document.getElementById('exportButton').addEventListener('click', function() {
-    
+
      var exportUrl = `{{ route('affectations.create') }}`;
-    
+
     window.location.href = exportUrl;
 });
 </script>
