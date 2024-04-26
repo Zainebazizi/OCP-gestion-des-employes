@@ -35,12 +35,12 @@ class EmployeeController extends Controller
         //     if (!in_array($field, ['id', 'nom', 'prenom', 'numero', 'department', 'region', 'cin'])) {
         //         return response()->json(['error' => 'Invalid field'], 400);
         //     }
-    
+
         //     $employees = $employees->whereNotNull($field)->orderBy($field)->get();
         //     return response()->json($employees);
         // }
         // // end filtering
-    
+
         //  //$employees = $employees->paginate(10);
         // return view('employé', compact('employees'));
         $employees = Employee::query();
@@ -57,12 +57,14 @@ class EmployeeController extends Controller
                   ->orWhere('region', 'like', "%{$search}%");
         });
     }
-     
-   
 
-    
+    $employees = $employees->paginate(10);
+        return view('Employé', compact('employees'));
+
+
+
     }
-  
+
     /**
      * Show the form for creating a new resource.
      */
@@ -71,7 +73,7 @@ class EmployeeController extends Controller
         \Log::info('Received export request:', $request->all());
         return Excel::download(new EmployeesExport($request), 'employees.xlsx');
 }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -97,7 +99,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
         return view('employees.show', compact('employee'));
-        
+
     }
 
     /**
@@ -108,7 +110,7 @@ class EmployeeController extends Controller
         $employee = Employee::findOrFail($id);
          return view('add_employé', compact('employee'));
         // return Excel::download(new EmployeesExport, 'employees.xlsx');
-       
+
     }
 
     /**
@@ -116,7 +118,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-      
+
         $employee = Employee::findOrFail($id);
         $donnees=([
             'nom' =>$request->nom,
@@ -127,7 +129,7 @@ class EmployeeController extends Controller
             'cin'=>$request->cin,
         ]);
         $employee->update($donnees);
-        
+
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
 
@@ -139,6 +141,6 @@ class EmployeeController extends Controller
         Employee::destroy($id);
         return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
     }
- 
+
 
 }
