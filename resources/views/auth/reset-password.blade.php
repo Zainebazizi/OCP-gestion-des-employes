@@ -1,4 +1,8 @@
 <x-guest-layout>
+<center><div >
+                <img src="OCP.jpg" class="w-20 h-20  "/>
+                
+            </div></center>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
@@ -32,7 +36,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                {{ __('Reset Password') }}
+                {{ __('Réinitialiser le mot de passe') }}
             </x-primary-button>
         </div>
     </form>
