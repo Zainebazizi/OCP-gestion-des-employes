@@ -233,7 +233,7 @@ input:checked+.slider:before {
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header" id="admin">
-                                    <img id="img" src="../download.png" class="img-circle" alt="User Image">
+                                    <img id="img" src="/download.png" class="img-circle" alt="User Image">
                                     <p>
                                         Admin
                                         <small>l'Office Commercial Pharmaceutique</small>
@@ -261,7 +261,7 @@ input:checked+.slider:before {
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="../download.png" class="img" alt="User Image">
+                        <img src="/download.png" class="img" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>Téléphones Portables </p>
