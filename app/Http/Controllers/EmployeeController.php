@@ -22,7 +22,7 @@ class EmployeeController extends Controller
         //         $query->where('id', 'like', "%{$search}%")
         //               ->orWhere('nom', 'like', "%{$search}%")
         //               ->orWhere('prenom', 'like', "%{$search}%")
-        //               ->orWhere('cin', 'like', "%{$search}%")
+        //               ->orWhere('code_matricule', 'like', "%{$search}%")
         //               ->orWhere('department', 'like', "%{$search}%")
         //               ->orWhere('region', 'like', "%{$search}%");
         //     });
@@ -32,7 +32,7 @@ class EmployeeController extends Controller
         // if ($request->ajax() && $request->has('filterBy')) {
         //     $field = $request->query('filterBy');
         //     // Ensure valid filtering field to prevent errors
-        //     if (!in_array($field, ['id', 'nom', 'prenom', 'numero', 'department', 'region', 'cin'])) {
+        //     if (!in_array($field, ['id', 'nom', 'prenom', 'numero', 'department', 'region', 'code_matricule'])) {
         //         return response()->json(['error' => 'Invalid field'], 400);
         //     }
 
@@ -52,7 +52,7 @@ class EmployeeController extends Controller
             $query->where('id', 'like', "%{$search}%")
                   ->orWhere('nom', 'like', "%{$search}%")
                   ->orWhere('prenom', 'like', "%{$search}%")
-                  ->orWhere('cin', 'like', "%{$search}%")
+                  ->orWhere('code_matricule', 'like', "%{$search}%")
                   ->orWhere('department', 'like', "%{$search}%")
                   ->orWhere('region', 'like', "%{$search}%");
         });
@@ -86,7 +86,7 @@ class EmployeeController extends Controller
             'numero' => 'required|string|max:15',
             'department' => 'required|string|max:255',
             'region' => 'required|string|max:255',
-            'cin' => 'required|string|max:255|unique:employees,cin'
+            'code_matricule' => 'required|string|max:255|unique:employees,code_matricule'
         ]);
         Employee::create($validated);
         return redirect()->route('employees.index')->with('success', 'Employee added successfully.');
@@ -126,7 +126,7 @@ class EmployeeController extends Controller
             'numero' =>$request->numero,
             'department' =>$request->department,
             'region' =>$request->region,
-            'cin'=>$request->cin,
+            'code_matricule'=>$request->code_matricule,
         ]);
         $employee->update($donnees);
 

@@ -9,7 +9,7 @@ class Affectation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nom_employee', 'telephone_N', 'application1', 'application2', 'application3', 'application4', 'date_debut', 'date_fin'];
+    protected $fillable = ['nom', 'code_matricule','telephone_N', 'application1', 'application2', 'application3', 'application4', 'date_debut', 'date_fin'];
 
     public function employee()
     {

@@ -26,13 +26,14 @@ class AffectationController extends Controller
         if ($request->has('search')) {
             $search = $request->input('search');
             $affectations = $affectations->where(function ($q) use ($search) {
-                $q->where('nom_employee', 'like', "%$search%")
+                $q->where('code_matricule', 'like', "%$search%")
+                    ->orWhere('nom', 'like', "%$search%")
                     ->orWhere('telephone_N', 'like', "%$search%")
                     ->orWhere('date_debut', 'like', "%$search%")
                     ->orWhere('date_fin', 'like', "%$search%");
             });// Ajoutez get() ou paginate() à la fin pour exécuter la requête.
         }
-        
+
         $affectations = $affectations->paginate(10);
         return view('Affectation', compact('affectations','Telephones','Employees','Applications'));
     }
@@ -62,7 +63,7 @@ class AffectationController extends Controller
      */
     public function create(request $request)
     {
-      
+
         \Log::info('Received export request:', $request->all());
         return Excel::download(new AffectationsExport($request), 'Affectations.xlsx');
     }
@@ -75,7 +76,7 @@ class AffectationController extends Controller
 public function store(Request $request)
 {
    // Récupérer l'employé par son nom
-   $employee = Employee::where('cin', $request->nom_employee)->first();
+   $employee = Employee::where('code_matricule', $request->code_matricule)->first();
 
    // Vérifier si l'employé existe et a un département associé
    if ($employee && $employee->department) {
@@ -88,7 +89,8 @@ public function store(Request $request)
 
        // Créer un tableau associatif avec les données à enregistrer
        $affectationData = [
-           'nom_employee' => $request->nom_employee,
+           'nom' => $request->nom,
+           'code_matricule'=>$request->code_matricule,
            'telephone_N' => $request->num_série,
            'date_debut' => $dateDebut,
            'date_fin' => $dateFin,
@@ -107,9 +109,11 @@ public function store(Request $request)
        AffectationHistory::create([
            'affectation_id' => $affectation->id,
            'action' => 'Création',
-           'user' => 'ff', // À modifier selon vos besoins
+            // À modifier selon vos besoins
            // Enregistrez toutes les données de l'affectation
-           'nom_employee' => $affectation->nom_employee,
+        //    'code_matricule' => $affectation->code_matricule,
+           'nom'=>$affectation->nom,
+           'code_matricule'=>$request->code_matricule,
            'telephone_N' => $affectation->telephone_N,
            'application1' => $affectation->application1,
            'application2' => $affectation->application2,
@@ -147,7 +151,7 @@ public function store(Request $request)
         $affectation=Affectation::findOrFail($id);
         $Applications= Application::all();
         return view('add_affectation', compact('affectation','employees','telephones','Applications'));
-       
+
     }
     /**
      * Update the specified resource in storage.
@@ -157,10 +161,11 @@ public function store(Request $request)
         $affectation = Affectation::findOrFail($id);
         $dateDebut = $request->date_debut;
         $dateFin = date('Y-m-d', strtotime($dateDebut . ' + 2 years'));
-    
+
         // Créer un tableau associatif avec les données à enregistrer
         $affectationData = [
-            'nom_employee' => $request->nom_employee,
+            'code_matricule' => $request->code_matricule,
+            'nom'=>$request->nom,
             'telephone_N' => $request->num_série,
             'date_debut' => $dateDebut,
             'date_fin' => $dateFin,
@@ -170,8 +175,8 @@ public function store(Request $request)
             'application4' => $request->Application4,
             // Ajoutez ici les autres champs d'application
         ];
-    
-       
+
+
 
         $affectation->update($affectationData);
 
@@ -190,5 +195,5 @@ public function store(Request $request)
     {
         return Excel::download(new AffectationsExport, 'affectations.xlsx');
     }
-   
+
 }

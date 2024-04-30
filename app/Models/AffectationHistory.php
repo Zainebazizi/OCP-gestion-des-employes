@@ -12,8 +12,8 @@ class AffectationHistory extends Model
     protected $fillable = [
         'affectation_id',
         'action',
-        'user',
-        'nom_employee',
+        'nom',
+        'code_matricule',
         'telephone_N',
         'department_name',
         'application1',

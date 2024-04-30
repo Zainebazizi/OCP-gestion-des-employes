@@ -7,26 +7,26 @@ use App\Models\Employee;
 
 class AffectationHistoryController extends Controller
 {
-    
 
 
-public function index(string $cin)
+
+public function index(string $code_matricule)
     {
     }
-    public function show($cin)
+    public function show($code_matricule)
 {
     // Votre logique pour afficher une affectation spécifique
-    
+
         // Récupérer l'historique des affectations
-        $employee = Employee::where('cin', $cin)->first();
+        $employee = Employee::where('code_matricule', $code_matricule)->first();
 
         if (!$employee) {
-            // Si aucun employé correspondant au CIN n'est trouvé, rediriger ou renvoyer une réponse d'erreur
-            return redirect()->back()->with('error', 'Aucun employé trouvé avec ce CIN.');
+            // Si aucun employé correspondant au code_matricule n'est trouvé, rediriger ou renvoyer une réponse d'erreur
+            return redirect()->back()->with('error', 'Aucun employé trouvé avec ce code_matricule.');
         }
 
         // Récupérer l'historique des affectations pour cet employé
-        $history = AffectationHistory::where('nom_employee', $employee->cin)->get();
+        $history = AffectationHistory::where('code_matricule', $employee->code_matricule)->get();
 
 
         // Rendre la vue avec les données de l'historique des affectations
