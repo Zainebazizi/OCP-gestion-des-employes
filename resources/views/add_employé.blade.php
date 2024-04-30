@@ -45,8 +45,8 @@
         </select>
     </div>
     <div class="form-group mb-3">
-        <label for="cin">CIN:</label>
-        <input type="text" class="form-control" id="cin" value="{{ $employee->cin }}" name="cin">
+        <label for="code_matricule">Code matricule:</label>
+        <input type="text" class="form-control" id="code_matricule" value="{{ $employee->code_matricule }}" name="code_matricule">
     </div>
     <button type="submit" class="btn btn-primary">Modifier</button>
 </form>

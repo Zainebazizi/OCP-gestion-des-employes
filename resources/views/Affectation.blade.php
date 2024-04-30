@@ -17,7 +17,8 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>CIN Employee</th>
+        <th>Code_matricule</th>
+        <th>Nom_employee</th>
         <th>Num_série</th>
         <th>Date Début</th>
         <th>Date Fin</th>
@@ -29,7 +30,8 @@
     @foreach($affectations as $aff)
       <tr>
         <td>{{$aff->id}}</td>
-        <td>{{$aff->nom_employee}}</td>
+        <td>{{$aff->code_matricule}}</td>
+        <td>{{$aff->nom}}</td>
         <td>{{$aff->telephone_N}}</td>
         <td>{{$aff->date_debut}}</td>
         <td>{{$aff->date_fin}}</td>
@@ -44,11 +46,12 @@
         </td>
       @endforeach
     </tbody>
-    <div class="pagination">
-        {{$affectations->links ()}}
-    </div>
+
   </table>
   <button id="exportButton" class="btn btn-primary">Export Excel</button>
+  <div class="pagination">
+        {{ $affectations->links() }}
+    </div>
 </div>
 <div class="modal fade" id="addSupplyer">
             <div class="modal-dialog">
@@ -103,11 +106,24 @@
 
                                 <tr>
                                     <td></td>
-                                    <td>CIN Employee:</td>
-                                    <td><select id="NomEmployee" name="nom_employee" required>
-                                    <option value=''> Sélectionnez CIN Employee </option>
+                                    <td>Code_matricule:</td>
+                                    <td><select id="NomEmployee" name="code_matricule" required>
+                                    <option value=''> Sélectionnez code matricule d'Employee </option>
                                       @foreach($Employees as $em)
-    <option value={{$em->cin}}>{{$em->cin}}</option>
+    <option value={{$em->code_matricule}}>{{$em->code_matricule}}</option>
+    @endforeach
+</select>
+
+                           </td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Nom_employee:</td>
+                                    <td><select id="NomEmployee" name="nom" required>
+                                    <option value=''> Sélectionnez Nom d'Employee </option>
+                                      @foreach($Employees as $em)
+    <option value={{$em->nom}}>{{$em->nom}}</option>
     @endforeach
 </select>
 

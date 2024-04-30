@@ -13,9 +13,17 @@
     @method('PATCH')
             <div class="form-group mb-3">
               <label for="employeeSelect">Sélectionnez l'employé :</label>
-              <select class="form-control" id="employeeSelect" value={{$affectation->nom_employee}} name="nom_employee">
+              <select class="form-control" id="employeeSelect" value={{$affectation->code_matricule}} name="code_matricule">
                 @foreach ($employees as $em)
-                <option value={{$em->cin}}>{{$em->cin}}</option>
+                <option value={{$em->code_matricule}}>{{$em->code_matricule}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group mb-3">
+              <label for="employeeSelect">Sélectionnez Nom l'employé :</label>
+              <select class="form-control" id="employeeSelect" value={{$affectation->nom_employee}} name="nom">
+                @foreach ($employees as $em)
+                <option value={{$em->nom_employee}}>{{$em->nom_employee}}</option>
                 @endforeach
               </select>
             </div>

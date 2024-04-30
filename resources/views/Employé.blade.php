@@ -25,7 +25,7 @@
         <th>Téléphone</th>
         <th>Department</th>
         <th>Region</th>
-        <th>CIN</th>
+        <th>code_matricule</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -38,7 +38,7 @@
         <td>{{$em->numero}}</td>
         <td>{{$em->department}}</td>
         <td>{{$em->region}}</td>
-        <td>{{$em->cin}}</td>
+        <td>{{$em->code_matricule}}</td>
         <td style="display: flex;">
     <a href="{{ route('employees.edit', ['employee' => $em->id]) }}" class="btn btn-primary btn-sm me-2">Modifier</a>
     <form action="{{ route('employees.destroy', $em) }}" method="POST">
@@ -46,7 +46,7 @@
         @method('DELETE')
         <button type="submit" class="btn btn-danger btn-sm me-2">Supprimer</button>
     </form>
-    <a href="{{ route('affectation-history.show', ['affectation_history' => $em->cin])}}"> <button id="btnHistorique"  class="btn btn-success btn-sm">Voir l'historique</button></a>
+    <a href="{{ route('affectation-history.show', ['affectation_history' => $em->code_matricule])}}"> <button id="btnHistorique"  class="btn btn-success btn-sm">Voir l'historique</button></a>
 </td>
 
 
@@ -125,8 +125,8 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td>CIN</td>
-                                    <td><input type="text" id="CIN"  name="cin" /></td>
+                                    <td>code_matricule</td>
+                                    <td><input type="text" id="code_matricule"  name="code_matricule" /></td>
 
                                 </tr>
                                 <tr>
@@ -150,7 +150,7 @@
 document.getElementById('exportButton').addEventListener('click', function() {
 
     var exportUrl = `{{ route('employees.create') }}`;
-   
+
 
     // Redirect to the export URL
     window.location.href = exportUrl;
