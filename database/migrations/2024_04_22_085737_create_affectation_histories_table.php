@@ -2,7 +2,7 @@
     use Illuminate\Database\Migrations\Migration;
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
-    
+
     class CreateAffectationHistoriesTable extends Migration
     {
         /**
@@ -15,10 +15,9 @@
             Schema::create('affectation_histories', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('affectation_id');
-                $table->string('action'); // Action réalisée (création, mise à jour, suppression)
-                $table->string('user'); // Utilisateur qui a effectué l'action
-                // Ajoutez toutes les colonnes de la table d'affectations ici
-                $table->string('nom_employee');
+                $table->string('action');
+                $table->string('code_matricule');
+                $table->string('nom');
                 $table->foreignId('telephone_N');
                 $table->string('department_name'); // Nom du département associé à l'affectation
                 $table->string('application1')->nullable();
@@ -30,7 +29,7 @@
                 $table->timestamps();
             });
         }
-    
+
         /**
          * Reverse the migrations.
          *
@@ -41,5 +40,5 @@
             Schema::dropIfExists('affectation_histories');
         }
     }
-    
+
 

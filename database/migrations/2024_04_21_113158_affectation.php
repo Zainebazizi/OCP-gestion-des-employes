@@ -15,7 +15,8 @@ return new class extends Migration
     Schema::disableForeignKeyConstraints();
     Schema::create('affectations', function (Blueprint $table) {
         $table->id();
-        $table->string('nom_employee');
+        $table->string('nom');
+        $table->string('code_matricule');
         $table->foreignId('telephone_N');
         $table->string('application1')->nullable(); // Ajoutez cette ligne pour le premier champ d'application
         $table->string('application2')->nullable(); // Ajoutez cette ligne pour le deuxième champ d'application
@@ -28,7 +29,7 @@ return new class extends Migration
     Schema::enableForeignKeyConstraints();
 }
 
-    
+
 
     /**
      * Reverse the migrations.

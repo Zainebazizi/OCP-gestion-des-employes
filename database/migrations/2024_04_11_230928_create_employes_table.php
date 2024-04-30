@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('numero');
             $table->string('department');
             $table->string('region');
-            $table->string('cin')->unique();
+            $table->string('code_matricule')->unique();
             $table->timestamps();
         });
     }
